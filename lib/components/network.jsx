@@ -24,7 +24,7 @@ const Network = () => {
   const getNetwork = async () => {
     const [status, ssid] = await Promise.all([
       Uebersicht.run(`ifconfig ${device} | grep status | cut -c 10-`),
-      Uebersicht.run(`networksetup -getairportnetwork ${device} | cut -c 24-`)
+      Uebersicht.run(`en="$(networksetup -listallhardwareports | awk '/Wi-Fi|AirPort/{getline; print $NF}')"; ipconfig getsummary "$en" | grep -Fxq "  Active : FALSE" || networksetup -listpreferredwirelessnetworks "$en" | sed -n '2s/^\t//p'`)
     ])
     setOutput({ status: Output.cleanup(status), ssid: Output.cleanup(ssid) })
   }
