@@ -1,4 +1,4 @@
-# simple-bar-lite
+# <img src="./images/logo-simple-bar-lite.png" width="200" alt="simple-bar-lite" />
 
 A [yabai](https://github.com/koekeishiya/yabai) status bar widget for [Übersicht](https://github.com/felixhageloh/uebersicht). This is a simplified version of [simple-bar](https://github.com/Jean-Tinland/simple-bar).
 
@@ -14,19 +14,19 @@ A [yabai](https://github.com/koekeishiya/yabai) status bar widget for [Übersich
 
 In order to make this custom bar work, you'll need to install both [yabai](https://github.com/koekeishiya/yabai) and [Übersicht](https://github.com/felixhageloh/uebersicht), both of them must be up to date.
 
-**`simple-bar-lite` supports only yabai v4**.
+**`simple-bar-lite` supports only yabai v4 and above**.
 
 Becareful, for Big Sur users, some actions must be taken in order to make yabai with scripting addition fully operational: [see here for more details](<https://github.com/koekeishiya/yabai/wiki/Installing-yabai-(latest-release)#macos-big-sur---automatically-load-scripting-addition-on-startup>).
 
-`simple-bar-lite` has been tested and is working on Monterey but should work on both Catalina & Big Sur.
+`simple-bar-lite` has been tested and is working on Monterey, Ventura & Sonoma but should work on both Catalina & Big Sur.
 
 **It is important to note that you'll need to use yabai in `bsp` or `stack` layout mode in order to prevent app windows to overlap simple-bar.**
 
 ## Preview
 
-![img](./preview-dark.jpg)
+![img](./images/preview-dark.jpg)
 
-![img](./preview-light.jpg)
+![img](./images/preview-light.jpg)
 
 ## Installation
 
@@ -43,6 +43,14 @@ $ git clone https://github.com/Jean-Tinland/simple-bar-lite $HOME/Library/Applic
 ### For users with a custom yabai install (path)
 
 You can set your custom yabai path in the `custom-settings.json` file.
+
+On recent versions of macOS, Homebrew will install `yabai` in `/opt/homebrew/bin/yabai`.
+
+```json
+{
+  "yabaiPath": "/opt/homebrew/bin/yabai"
+}
+```
 
 ## Usage
 
@@ -66,6 +74,17 @@ If you want to customize the colors, shadows, fonts, etc... you can simply setup
 You can copy the content of `default-settings.json` file in your `custom-settings.json` and change the values.
 
 Alongside the theme customization, you will find all the other settings you can customize.
+
+## Custom Components
+
+To add a new component
+
+1. add a file + contents to `./lib/custom-components/`
+2. add the component to `./lib/custom-components/index.jsx`
+3. add configuration item to `./custom-settings.json` with an object containing at least
+   ```json
+   { "name": "componentname", "enabled": true }
+   ```
 
 ### All the settings
 

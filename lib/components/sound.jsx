@@ -5,17 +5,19 @@ import * as ClassNames from '../services/classnames'
 import Widget from './widget.jsx'
 import useWidgetRefresh from '../hooks/use-widget-refresh'
 
+const { React } = Uebersicht
+
 const settings = Settings.get()
 const { dataWidgets } = settings
 
 const symbols = {
-  output: '>',
-  input: '<'
+  output: '🔈',
+  input: '🎤'
 }
 
 const Sound = ({ kind }) => {
   const { color, onClickCommand, refreshOnClick, refreshFrequency } = dataWidgets[kind]
-  const [output, setOutput] = Uebersicht.React.useState()
+  const [output, setOutput] = React.useState()
 
   const getSound = async () => {
     const volume = await Uebersicht.run(`osascript -e 'set ovol to ${kind} volume of (get volume settings)'`)
@@ -47,7 +49,7 @@ const Sound = ({ kind }) => {
       refreshOnClick={refreshOnClick}
       style={{ color }}
     >
-      {volume}% {symbol}
+      {symbol} {volume}%
     </Widget>
   )
 }
